@@ -11,6 +11,8 @@ ARG USE_CUDA_VER=cu121
 # IMPORTANT: If you change the default model (all-MiniLM-L6-v2) and vice versa, you aren't able to use RAG Chat with your previous documents loaded in the WebUI! You need to re-embed them.
 ARG USE_EMBEDDING_MODEL=all-MiniLM-L6-v2
 
+######## WebUI frontend ########
+FROM --platform=linux node:21-alpine3.19 as build
 
 WORKDIR /app
 
