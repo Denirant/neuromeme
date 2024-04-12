@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   ollama:
+    platform: linux
     volumes:
       - ollama:/root/.ollama
     container_name: ollama
@@ -10,6 +11,7 @@ services:
     image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
 
   open-webui:
+    platform: linux
     build:
       context: .
       args:
