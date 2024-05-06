@@ -29,4 +29,17 @@ if [ "$USE_CUDA_DOCKER" = "true" ]; then
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/python3.11/site-packages/torch/lib:/usr/local/lib/python3.11/site-packages/nvidia/cudnn/lib"
 fi
 
+# Функция для перезапуска скрипта
+restart_script() {
+  echo "Restarting script..."
+  exec "$0" "$@" &
+  exit
+}
+
+# Следим за изменениями в папке build
+fswatch -r build | while read; do
+  restart_script
+done &
+
+# Запускаем основной процесс сервера
 WEBUI_SECRET_KEY="$WEBUI_SECRET_KEY" exec uvicorn main:app --host 0.0.0.0 --port "$PORT" --forwarded-allow-ips '*'
