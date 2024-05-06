@@ -437,7 +437,7 @@ export const updateDefaultImageGenerationModel = async (token: string = '', mode
 	return res.model;
 };
 
-export const imageGenerations = async (token: string = '', prompt: string) => {
+export const imageGenerations = async (token: string = '', prompt: string, negative: string) => {
 	let error = null;
 
 	const res = await fetch(`${IMAGES_API_BASE_URL}/generations`, {
@@ -448,8 +448,46 @@ export const imageGenerations = async (token: string = '', prompt: string) => {
 			...(token && { authorization: `Bearer ${token}` })
 		},
 		body: JSON.stringify({
-			prompt: prompt
+			prompt: prompt,
+			negative: negative ?? '',
+			sampler_name: "DPM++ 2M",
+			scheduler: "Karras",
+			refiner_checkpoint: "sd_xl_refiner_1.0.safetensors",
+			refiner_switch_at: 0.75,
 		})
+	})
+		.then(async (res) => {
+			if (!res.ok) throw await res.json();
+			return res.json();
+		})
+		.catch((err) => {
+			console.log(err);
+			if ('detail' in err) {
+				error = err.detail;
+			} else {
+				error = 'Server connection failed';
+			}
+			return null;
+		});
+
+	if (error) {
+		throw error;
+	}
+
+	return res;
+};
+
+
+export const getImageProgress = async (token: string = '') => {
+	let error = null;
+
+	const res = await fetch(`http://127.0.0.1:7860/sdapi/v1/progress?skip_current_image=true`, {
+		method: 'GET',
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+			...(token && { authorization: `Bearer ${token}` })
+		},
 	})
 		.then(async (res) => {
 			if (!res.ok) throw await res.json();

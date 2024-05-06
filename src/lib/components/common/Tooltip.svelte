@@ -5,6 +5,7 @@
 	export let placement = 'top';
 	export let content = `I'm a tooltip!`;
 	export let touch = true;
+	export let styling = null
 
 	let tooltipElement;
 	let tooltipInstance;
@@ -29,6 +30,6 @@
 	});
 </script>
 
-<div bind:this={tooltipElement} aria-label={content} class="flex">
+<div bind:this={tooltipElement} aria-label={content} class="flex" style={styling}>
 	<slot />
 </div>

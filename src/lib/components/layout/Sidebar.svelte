@@ -160,8 +160,64 @@
 			</a>
 		</div>
 
+		<div class="px-2 flex justify-center">
+			<a
+				class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+				href="/images"
+				on:click={() => {
+					selectedChatId = null;
+					chatId.set('');
+				}}
+			>
+				<div class="self-center">
+					
+					<svg xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					class="w-4 h-4"
+					style="width: 20px; height: 20px;"
+					>
+						<path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.1 6.1 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.1 8.1 0 0 1-3.078.132 4 4 0 0 1-.562-.135 1.4 1.4 0 0 1-.466-.247.7.7 0 0 1-.204-.288.62.62 0 0 1 .004-.443c.095-.245.316-.38.461-.452.394-.197.625-.453.867-.826.095-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.201-.925 1.746-.896q.19.012.348.048c.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.176-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04M4.705 11.912a1.2 1.2 0 0 0-.419-.1c-.246-.013-.573.05-.879.479-.197.275-.355.532-.5.777l-.105.177c-.106.181-.213.362-.32.528a3.4 3.4 0 0 1-.76.861c.69.112 1.736.111 2.657-.12.559-.139.843-.569.993-1.06a3 3 0 0 0 .126-.75zm1.44.026c.12-.04.277-.1.458-.183a5.1 5.1 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.59 1.927-5.566 4.66-7.302 6.792-.442.543-.795 1.243-1.042 1.826-.121.288-.214.54-.275.72v.001l.575.575zm-4.973 3.04.007-.005zm3.582-3.043.002.001h-.002z" style="width: 100%; height: 100%;"/>
+					  </svg>
+				</div>
+
+				<div class="flex self-center">
+					<div class=" self-center font-medium text-sm">{$i18n.t('Images')}</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="px-2 flex justify-center">
+			<a
+				class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
+				href="/gallery"
+				on:click={() => {
+					selectedChatId = null;
+					chatId.set('');
+				}}
+			>
+				<div class="self-center">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						class="w-4 h-4"
+						style="width: 20px; height: 20px;"
+						>
+						<path
+							d="M19.5,2h-15C3.119812,2.0012817,2.0012817,3.119812,2,4.5v15c0.0012817,1.380188,1.119812,2.4987183,2.5,2.5h15c1.380188-0.0012817,2.4987183-1.119812,2.5-2.5v-15C21.9987183,3.119812,20.880188,2.0012817,19.5,2z M4.5,21c-0.828064-0.0009155-1.4990845-0.671936-1.5-1.5v-5.2246094l3.7626953-3.7626953c0.684021-0.6816406,1.7905884-0.6816406,2.4746094,0L19.7047729,20.979187C19.637207,20.9885864,19.5701294,20.999939,19.5,21H4.5z M21,19.5c-0.0004272,0.3783569-0.1454468,0.7199097-0.376709,0.9837036l-6.9161377-6.9155273l1.055542-1.055481c0.684021-0.6816406,1.7905884-0.6816406,2.4746094,0L21,16.2753906V19.5z M21,14.8613892l-3.0556641-3.0556641c-1.0744629-1.0722656-2.814209-1.0722656-3.8886719,0l-1.055481,1.055481l-3.0558472-3.055542c-1.0880127-1.0390625-2.8006592-1.0390625-3.8886719,0L3,12.8613281V4.5C3.0009155,3.671936,3.671936,3.0009155,4.5,3h15c0.828064,0.0009155,1.4990845,0.671936,1.5,1.5V14.8613892z"
+							style="width: 100%; height: 100%;"
+						></path>
+					</svg>
+				</div>
+
+				<div class="flex self-center">
+					<div class=" self-center font-medium text-sm">{$i18n.t('Gallery')}</div>
+				</div>
+			</a>
+		</div>
+
 		{#if $user?.role === 'admin'}
-			
 			<div class="px-2 flex justify-center">
 				<a
 					class="flex-grow flex space-x-3 rounded-xl px-3.5 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition"
@@ -355,8 +411,8 @@
 								chat.id === chatDeleteId
 									? 'bg-gray-300 dark:bg-gray-900'
 									: chat.id === selectedChatId
-									? 'bg-gray-100 dark:bg-gray-950'
-									: 'group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
+										? 'bg-gray-100 dark:bg-gray-950'
+										: 'group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
 							>
 								<input bind:value={chatTitle} class=" bg-transparent w-full outline-none mr-10" />
 							</div>
@@ -367,8 +423,8 @@
 								chat.id === chatDeleteId
 									? 'bg-gray-300 dark:bg-gray-900'
 									: chat.id === selectedChatId
-									? 'bg-gray-100 dark:bg-gray-950'
-									: ' group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
+										? 'bg-gray-100 dark:bg-gray-950'
+										: ' group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
 								href="/c/{chat.id}"
 								on:click={() => {
 									selectedChatId = chat.id;
@@ -392,8 +448,8 @@
 							{chat.id === $chatId || chat.id === chatTitleEditId || chat.id === chatDeleteId
 								? 'from-gray-300 dark:from-gray-900'
 								: chat.id === selectedChatId
-								? 'from-gray-100 dark:from-gray-950'
-								: 'invisible group-hover:visible from-gray-100 dark:from-gray-950'}
+									? 'from-gray-100 dark:from-gray-950'
+									: 'invisible group-hover:visible from-gray-100 dark:from-gray-950'}
 								absolute right-[10px] top-[10px] pr-2 pl-5 bg-gradient-to-l from-80%
 								
 								  to-transparent"
@@ -548,7 +604,6 @@
 							transition:fade|slide={{ duration: 100 }}
 						>
 							<div class="py-2 w-full">
-
 								<button
 									class="flex py-2.5 px-3.5 w-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
 									on:click={async () => {

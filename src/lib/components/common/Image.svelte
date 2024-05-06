@@ -9,6 +9,8 @@
 
 	$: _src = src.startsWith('/') ? `${WEBUI_BASE_URL}${src}` : src;
 
+	console.log(`${WEBUI_BASE_URL}${src}`)
+
 	let showImagePreview = false;
 </script>
 
